@@ -44,8 +44,10 @@ jobs:
         with:
           context: .
           push: true
-          tags: "${{ github.repository_owner }}/${{ github.repository }}:${{ matrix.arch }}-${{ matrix.dsm_version.dsm }},ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ matrix.arch }}-${{ matrix.dsm_version.dsm }}"
+          tags: "${{ github.repository }}:${{ matrix.arch }}-${{ matrix.dsm_version.dsm }},ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ matrix.arch }}-${{ matrix.dsm_version.dsm }}"
           platforms: linux/amd64,linux/arm64
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:cache
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:cache,mode=max
           build-args: |
             ARCH=${{ matrix.arch }}
             DSM_VERSION=${{ matrix.dsm_version.dsm }}
