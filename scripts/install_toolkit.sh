@@ -15,16 +15,16 @@ BASE_ENV_FILE="base_env-${DSM_VERSION}.txz"
 BASE_ENV_URL="${TOOLKIT_BASE_URL}/base/${BASE_ENV_FILE}"
 wget -q ${BASE_ENV_URL} -O /tmp/synology-toolkit/${BASE_ENV_FILE}
 
-DEV_FILE="ds.${ARCH}-${DSM_VERSION}.dev.txz"
-DEV_URL="${TOOLKIT_BASE_URL}/${ARCH}/${DEV_FILE}"
+DEV_FILE="ds.${CPU_ARCH}-${DSM_VERSION}.dev.txz"
+DEV_URL="${TOOLKIT_BASE_URL}/${CPU_ARCH}/${DEV_FILE}"
 wget -q ${DEV_URL} -O /tmp/synology-toolkit/${DEV_FILE}
 
-ENV_FILE="ds.${ARCH}-${DSM_VERSION}.env.txz"
-ENV_URL="${TOOLKIT_BASE_URL}/${ARCH}/${ENV_FILE}"
+ENV_FILE="ds.${CPU_ARCH}-${DSM_VERSION}.env.txz"
+ENV_URL="${TOOLKIT_BASE_URL}/${CPU_ARCH}/${ENV_FILE}"
 wget -q ${ENV_URL} -O /tmp/synology-toolkit/${ENV_FILE}
 
 LINUX_FILE="linux-${LINUX_VERSION}.txz"
-LINUX_URL="${TOOLCHAIN_BASE_URL}/Synology%20NAS%20GPL%20Source/${DSM_VERSION}-${GPL_VERSION}/${ARCH}/${LINUX_FILE}"
+LINUX_URL="${TOOLCHAIN_BASE_URL}/Synology%20NAS%20GPL%20Source/${DSM_VERSION}-${GPL_VERSION}/${CPU_ARCH}/${LINUX_FILE}"
 wget -q ${LINUX_URL} -O /tmp/synology-toolkit/${LINUX_FILE}
 
 # Extract synology toolkit

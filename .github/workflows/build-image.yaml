@@ -49,7 +49,7 @@ jobs:
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:cache
           cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:cache,mode=max
           build-args: |
-            ARCH=${{ matrix.hardware.arch }}
+            CPU_ARCH=${{ matrix.hardware.arch }}
             DSM_VERSION=${{ matrix.software.dsm }}
             GPL_VERSION=${{ matrix.software.gpl }}
             LINUX_VERSION=${{ matrix.software.linux }}
