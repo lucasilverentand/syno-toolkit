@@ -13,8 +13,8 @@ jobs:
 
     strategy:
       matrix:
-        arch: ["gemini-lake"]
-        dsm_version: [{ dsm: "7.2", gpl: "25426" }]
+        hardware: [{ arch: "geminilake" }]
+        software: [{ dsm: "7.2", gpl: "64570", linux: "4.4.x" }]
 
     steps:
       - name: Checkout repository
@@ -44,11 +44,12 @@ jobs:
         with:
           context: .
           push: true
-          tags: "${{ github.repository }}:${{ matrix.arch }}-${{ matrix.dsm_version.dsm }},ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ matrix.arch }}-${{ matrix.dsm_version.dsm }}"
+          tags: "${{ github.repository }}:${{ matrix.hardware.arch }}-${{ matrix.software.dsm }},ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ matrix.hardware.arch }}-${{ matrix.software.dsm }}"
           platforms: linux/amd64,linux/arm64
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:cache
           cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:cache,mode=max
           build-args: |
-            ARCH=${{ matrix.arch }}
-            DSM_VERSION=${{ matrix.dsm_version.dsm }}
-            GPL_VERSION=${{ matrix.dsm_version.gpl }}
+            ARCH=${{ matrix.hardware.arch }}
+            DSM_VERSION=${{ matrix.software.dsm }}
+            GPL_VERSION=${{ matrix.software.gpl }}
+            LINUX_VERSION=${{ matrix.software.linux }}
